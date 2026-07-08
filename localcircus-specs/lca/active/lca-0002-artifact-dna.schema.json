@@ -1,0 +1,229 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://localcircus.dev/lca/0002/artifacts/dna.schema.json",
+  "title": "Artifact DNA",
+  "description": "Complete artifact identity record for LocalCircus ecosystem",
+  "type": "object",
+  "required": ["uuid", "name", "type", "version", "capabilities", "compatibility", "signatures", "metadata"],
+  "properties": {
+    "uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+      "description": "UUID v7 for time-ordered unique identification"
+    },
+    "name": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "type": {
+      "$ref": "#/definitions/artifactType"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    },
+    "displayName": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "capabilities": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/capability" },
+      "minItems": 1
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/dependency" }
+    },
+    "optionalDependencies": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/dependency" }
+    },
+    "peerDependencies": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/dependency" }
+    },
+    "compatibility": { "$ref": "#/definitions/compatibility" },
+    "provenance": { "$ref": "#/definitions/provenance" },
+    "signatures": { "$ref": "#/definitions/signatures" },
+    "metadata": { "$ref": "#/definitions/metadata" }
+  },
+  "definitions": {
+    "artifactType": {
+      "type": "string",
+      "enum": [
+        "model", "agent", "workflow", "tool", "plugin", "extension",
+        "mcp-server", "acp-tool", "api-connector", "dataset",
+        "knowledge-pack", "prompt-pack", "memory-pack", "theme",
+        "workspace", "project-template", "benchmark", "evaluation",
+        "documentation"
+      ]
+    },
+    "capability": {
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9]*:[a-z][a-z0-9]*(:[a-z][a-z0-9]*)?$"
+        },
+        "version": { "type": "string" },
+        "description": { "type": "string" },
+        "parameters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "type"],
+            "properties": {
+              "name": { "type": "string" },
+              "type": { "type": "string" },
+              "required": { "type": "boolean" },
+              "default": {}
+            }
+          }
+        }
+      }
+    },
+    "dependency": {
+      "type": "object",
+      "required": ["reference", "versionRange", "optional"],
+      "properties": {
+        "reference": { "$ref": "#/definitions/artifactReference" },
+        "versionRange": { "type": "string" },
+        "optional": { "type": "boolean" },
+        "peer": { "type": "boolean" }
+      }
+    },
+    "artifactReference": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "$ref": "#/definitions/artifactType" }
+      }
+    },
+    "compatibility": {
+      "type": "object",
+      "properties": {
+        "platforms": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["windows", "macos", "linux", "wasm"] }
+        },
+        "architectures": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["x64", "arm64", "wasm32"] }
+        },
+        "localcircus": { "$ref": "#/definitions/versionRange" },
+        "runtime": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string", "enum": ["node", "browser", "deno", "python", "go"] },
+              "versionRange": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "versionRange": {
+      "type": "object",
+      "properties": {
+        "min": { "type": "string" },
+        "max": { "type": "string" },
+        "exclusive": { "type": "boolean" }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "object",
+          "properties": {
+            "url": { "type": "string", "format": "uri" },
+            "git": {
+              "type": "object",
+              "properties": {
+                "commit": { "type": "string" },
+                "branch": { "type": "string" },
+                "tag": { "type": "string" }
+              }
+            },
+            "author": { "$ref": "#/definitions/creatorInfo" }
+          }
+        },
+        "published": {
+          "type": "object",
+          "properties": {
+            "publishedAt": { "type": "string", "format": "date-time" },
+            "publisher": { "$ref": "#/definitions/creatorInfo" },
+            "registry": { "type": "string" }
+          }
+        },
+        "lineage": {
+          "type": "object",
+          "properties": {
+            "forkedFrom": { "$ref": "#/definitions/artifactReference" },
+            "parent": { "$ref": "#/definitions/artifactReference" },
+            "children": { "type": "array", "items": { "$ref": "#/definitions/artifactReference" } }
+          }
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "timestamp": { "type": "string", "format": "date-time" },
+              "author": { "$ref": "#/definitions/creatorInfo" },
+              "message": { "type": "string" },
+              "type": { "type": "string", "enum": ["created", "updated", "forked", "published"] }
+            }
+          }
+        }
+      }
+    },
+    "creatorInfo": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "signatures": {
+      "type": "object",
+      "properties": {
+        "creator": { "$ref": "#/definitions/signature" },
+        "registry": { "$ref": "#/definitions/signature" },
+        "endorsements": { "type": "array", "items": { "$ref": "#/definitions/signature" } }
+      }
+    },
+    "signature": {
+      "type": "object",
+      "required": ["algorithm", "keyId", "value", "created"],
+      "properties": {
+        "algorithm": { "type": "string", "enum": ["ed25519", "rsa", "ecdsa"] },
+        "keyId": { "type": "string" },
+        "value": { "type": "string" },
+        "created": { "type": "string", "format": "date-time" }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["description", "keywords", "license"],
+      "properties": {
+        "description": { "type": "string", "maxLength": 1000 },
+        "keywords": { "type": "array", "items": { "type": "string" }, "maxItems": 10 },
+        "license": { "type": "string" },
+        "homepage": { "type": "string", "format": "uri" },
+        "documentation": { "type": "string", "format": "uri" },
+        "repository": { "type": "string", "format": "uri" },
+        "bugs": { "type": "string", "format": "uri" },
+        "size": { "type": "integer" },
+        "checksum": { "type": "string" }
+      }
+    }
+  }
+}
