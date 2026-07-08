@@ -1,0 +1,18 @@
+{
+  "name": "@localcircus/plugin-runtime",
+  "version": "0.1.0",
+  "description": "LocalCircus plugin runtime",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@localcircus/core": "^0.1.0",
+    "@localcircus/storage": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "^20.10.0"
+  }
+}

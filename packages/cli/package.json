@@ -1,0 +1,21 @@
+{
+  "name": "@localcircus/cli",
+  "version": "0.1.0",
+  "description": "LocalCircus CLI",
+  "bin": {
+    "circus": "./bin/circus.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "link": "npm link"
+  },
+  "dependencies": {
+    "@localcircus/core": "^0.1.0",
+    "commander": "^11.1.0",
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "^20.10.0"
+  }
+}

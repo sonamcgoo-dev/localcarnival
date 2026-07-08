@@ -1,0 +1,17 @@
+{
+  "name": "@localcircus/storage",
+  "version": "0.1.0",
+  "description": "LocalCircus local storage",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@localcircus/core": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "^20.10.0"
+  }
+}

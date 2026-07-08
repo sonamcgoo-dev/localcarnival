@@ -1,0 +1,19 @@
+{
+  "name": "localcircus",
+  "version": "0.1.0",
+  "description": "Local-first creative operating environment",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "lint": "eslint packages --ext .ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "eslint": "^8.56.0",
+    "@types/node": "^20.10.0"
+  }
+}
