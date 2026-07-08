@@ -1,6 +1,22 @@
-# LocalCircus
+# LocalCircus 🎪
 
 > A local-first creative operating environment that amplifies human capability through intelligent tools, automation, and collaboration.
+
+## ⚡ Implementation Status
+
+**Design Documentation:** Complete ✅  
+**Implementation:** In Progress 🔄
+
+### Milestone 1: Core Runtime ✅
+- [x] Ringmaster Core with EventBus, Scheduler, MemoryManager
+- [x] CLI with status, memory, schedule, events commands
+- [x] Local file-based artifact storage
+- [x] Plugin loading and lifecycle management
+
+### Next: Milestone 2 - SDKs 🔜
+- Artifact SDK
+- Provider SDK
+- Workflow SDK
 
 ## Mission
 
@@ -82,6 +98,15 @@ See `localcircus-specs/` for full specifications.
 | MCP Server | Model Context Protocol |
 | Provider | AI provider connections |
 | Dataset | Data resources |
+
+## Packages
+
+| Package | Description |
+|---------|-------------|
+| [packages/core](./packages/core/) | Ringmaster Core runtime |
+| [packages/cli](./packages/cli/) | Command-line interface |
+| [packages/storage](./packages/storage/) | Local artifact storage |
+| [packages/plugin-runtime](./packages/plugin-runtime/) | Plugin system |
 
 ## License
 
