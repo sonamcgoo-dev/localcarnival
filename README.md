@@ -5,7 +5,27 @@
 ## ⚡ Implementation Status
 
 **Design Documentation:** Complete ✅  
-**Implementation:** In Progress 🔄
+**Implementation:** Complete ✅  
+**Repository:** https://github.com/sonamcgoo-dev/localcarnival
+
+## Quick Start
+
+```bash
+npm install -g @localcircus/cli
+circus init
+circus web start
+```
+
+## CLI Commands
+
+```bash
+circus init              # Initialize workspace
+circus web start         # Start web UI
+circus zoo browse        # Browse artifacts
+circus forge create      # Create artifact
+circus registry search   # Search registry
+circus codex search      # Search docs
+```
 
 ### Milestone 1: Core Runtime ✅
 - [x] Ringmaster Core with EventBus, Scheduler, MemoryManager
