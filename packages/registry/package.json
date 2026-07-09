@@ -1,0 +1,21 @@
+{
+  "name": "@localcircus/registry",
+  "version": "0.1.0",
+  "description": "Artifact registry with graph database and discovery for LocalCircus",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@localcircus/core": "^0.1.0",
+    "@localcircus/artifact-sdk": "^0.1.0",
+    "@localcircus/storage": "^0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "@types/node": "^20.10.0",
+    "jest": "^29.7.0"
+  }
+}

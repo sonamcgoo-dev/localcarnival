@@ -14,6 +14,7 @@ import { createWorkflowCommands } from './commands/workflows';
 import { createProviderCommands } from './commands/providers';
 import { createWebCommands } from './commands/web';
 import { createForgeCommands } from './commands/forge';
+import { createRegistryCommands } from './commands/registry';
 
 // Version
 const VERSION = '0.1.0';
@@ -230,6 +231,7 @@ createWorkflowCommands(program);
 createProviderCommands(program);
 createWebCommands(program);
 createForgeCommands(program);
+createRegistryCommands(program);
 
 // Parse and execute
 program.parse(process.argv);
