@@ -25,6 +25,12 @@
 - [x] Connection system with validation
 - [x] Workflow builder (BigTop class)
 
+### Milestone 4: UI Components ✅
+- [x] React Canvas component with grid, nodes, connections
+- [x] Toolbar with node palette and controls
+- [x] useBigTop hook for state management
+- [x] CLI web command (`circus web start`)
+
 ## Mission
 
 Technology should disappear behind creation. LocalCircus gives creators an elevated sense of capacity, momentum, and the confidence to accomplish ambitious work.
@@ -118,6 +124,7 @@ See `localcircus-specs/` for full specifications.
 | [packages/provider-sdk](./packages/provider-sdk/) | AI provider adapters |
 | [packages/workflow-sdk](./packages/workflow-sdk/) | Workflow execution |
 | [packages/bigtop](./packages/bigtop/) | Infinite canvas & workflow builder |
+| [packages/ui](./packages/ui/) | React components for Big Top |
 
 ## License
 
