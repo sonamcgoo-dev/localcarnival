@@ -19,10 +19,11 @@
 - [x] Workflow SDK - Executor, builder, built-in actions
 - [x] CLI integration for all SDKs
 
-### Next: Milestone 3 - Big Top 🔜
-- Canvas rendering
-- Basic nodes
-- Simple workflows
+### Milestone 3: Big Top ✅
+- [x] Canvas engine with viewport, pan, zoom
+- [x] Node system with 8 node types
+- [x] Connection system with validation
+- [x] Workflow builder (BigTop class)
 
 ## Mission
 
@@ -116,6 +117,7 @@ See `localcircus-specs/` for full specifications.
 | [packages/artifact-sdk](./packages/artifact-sdk/) | Artifact management |
 | [packages/provider-sdk](./packages/provider-sdk/) | AI provider adapters |
 | [packages/workflow-sdk](./packages/workflow-sdk/) | Workflow execution |
+| [packages/bigtop](./packages/bigtop/) | Infinite canvas & workflow builder |
 
 ## License
 
