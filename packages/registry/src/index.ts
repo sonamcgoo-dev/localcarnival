@@ -24,14 +24,14 @@ import { RegistryEntry, SearchQuery, SearchResult, Recommendation, TrustLevel } 
 export class Registry {
   private eventBus: EventBus;
   private graph: GraphDatabase;
-  private search: SearchEngine;
+  private searchEngine: SearchEngine;
   private compatibility: CompatibilityEngine;
   private recommendations: RecommendationsEngine;
 
   constructor() {
     this.eventBus = new EventBus();
     this.graph = new GraphDatabase(this.eventBus);
-    this.search = new SearchEngine(this.eventBus);
+    this.searchEngine = new SearchEngine(this.eventBus);
     this.compatibility = new CompatibilityEngine();
     this.recommendations = new RecommendationsEngine(this.eventBus);
   }
@@ -76,7 +76,7 @@ export class Registry {
     this.graph.addArtifact(dna);
 
     // Add to search index
-    this.search.index(entry);
+    this.searchEngine.index(entry);
 
     // Add to recommendations
     this.recommendations.addEntry(entry);
@@ -93,7 +93,7 @@ export class Registry {
     const node = this.graph.getNode(uuid);
     if (!node) return undefined;
 
-    const entries = this.search.getAll();
+    const entries = this.searchEngine.getAll();
     return entries.find(e => e.uuid === uuid);
   }
 
@@ -104,7 +104,7 @@ export class Registry {
     const node = this.graph.getNodeByName(name);
     if (!node) return undefined;
 
-    const entries = this.search.getAll();
+    const entries = this.searchEngine.getAll();
     return entries.find(e => e.name === name);
   }
 
@@ -112,7 +112,7 @@ export class Registry {
    * Search artifacts
    */
   search(query: SearchQuery, limit?: number): SearchResult[] {
-    return this.search.search(query, limit);
+    return this.searchEngine.search(query, limit);
   }
 
   /**
@@ -154,35 +154,35 @@ export class Registry {
    * Get trending
    */
   getTrending(limit = 10): RegistryEntry[] {
-    return this.search.getTrending(limit);
+    return this.searchEngine.getTrending(limit);
   }
 
   /**
    * Get recent
    */
   getRecent(limit = 10): RegistryEntry[] {
-    return this.search.getRecent(limit);
+    return this.searchEngine.getRecent(limit);
   }
 
   /**
    * Get all entries
    */
   getAll(): RegistryEntry[] {
-    return this.search.getAll();
+    return this.searchEngine.getAll();
   }
 
   /**
    * Get entries by type
    */
   getByType(type: ArtifactType): RegistryEntry[] {
-    return this.search.search({ type }, 1000).map(r => r.entry);
+    return this.searchEngine.search({ type }, 1000).map(r => r.entry);
   }
 
   /**
    * Get entries by category
    */
   getByCategory(category: string): RegistryEntry[] {
-    return this.search.search({ category }, 1000).map(r => r.entry);
+    return this.searchEngine.search({ category }, 1000).map(r => r.entry);
   }
 
   /**

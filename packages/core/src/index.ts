@@ -4,7 +4,8 @@
  * Ringmaster Core - The runtime engine for LocalCircus.
  */
 
-export { RingmasterCore } from './runtime/RingmasterCore';
+// Re-export everything from submodules
+export { RingmasterCore, createCore, getCore } from './runtime/RingmasterCore';
 export { EventBus } from './events/EventBus';
 export { Scheduler } from './scheduler/Scheduler';
 export { MemoryManager } from './memory/MemoryManager';

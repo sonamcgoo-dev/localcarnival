@@ -17,6 +17,7 @@ import { createForgeCommands } from './commands/forge';
 import { createRegistryCommands } from './commands/registry';
 import { createCodexCommands } from './commands/codex';
 import { createInitCommand } from './commands/init';
+import { createOnboardCommand } from './commands/onboard';
 
 // Version
 const VERSION = '0.1.0';
@@ -236,6 +237,15 @@ createWebCommands(program);
 createForgeCommands(program);
 createRegistryCommands(program);
 createCodexCommands(program);
+
+// Onboard command
+program
+  .command('onboard')
+  .description('First-time setup and tour of LocalCircus')
+  .action(async () => {
+    const onboard = await createOnboardCommand();
+    await onboard.action();
+  });
 
 // Parse and execute
 program.parse(process.argv);

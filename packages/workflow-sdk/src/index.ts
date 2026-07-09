@@ -118,8 +118,10 @@ export interface StepResult {
 // ============================================================================
 
 export interface ActionHandler {
-  (config: Record<string, any>, context: StepContext): Promise<any>;
+  (config: Record<string, any>, context?: StepContext): Promise<any>;
 }
+
+export type ActionRegistry = Record<string, ActionHandler | Record<string, ActionHandler>>;
 
 export interface StepContext {
   inputs: Record<string, any>;
@@ -129,7 +131,7 @@ export interface StepContext {
   skip: () => void;
 }
 
-const builtInActions: Record<string, ActionHandler> = {
+const builtInActions: ActionRegistry = {
   log: async (config) => {
     console.log(`[LOG] ${config.message || config}`);
     return config.message;
@@ -207,14 +209,14 @@ export interface WorkflowExecutorConfig {
 export class WorkflowExecutor {
   private eventBus: EventBus;
   private scheduler: Scheduler;
-  private actions: Record<string, ActionHandler>;
+  private actions: ActionRegistry;
   private timeout: number;
   private activeRuns: Map<string, WorkflowRun> = new Map();
 
   constructor(config: WorkflowExecutorConfig = {}) {
     this.eventBus = config.eventBus || new EventBus();
     this.scheduler = config.scheduler || new Scheduler(this.eventBus);
-    this.actions = { ...builtInActions, ...config.actions };
+    this.actions = { ...builtInActions, ...(config.actions || {}) } as ActionRegistry;
     this.timeout = config.timeout || 300000;
   }
 
@@ -371,10 +373,18 @@ export class WorkflowExecutor {
       return step.config;
     }
 
-    const action = this.actions[step.action];
+    const actionValue = this.actions[step.action];
     
-    if (!action) {
+    if (!actionValue) {
       throw new Error(`Unknown action: ${step.action}`);
+    }
+
+    // Handle nested actions (like transform.filter)
+    let handler: ActionHandler;
+    if (typeof actionValue === 'function') {
+      handler = actionValue;
+    } else {
+      throw new Error(`Action ${step.action} is a namespace, not a callable action`);
     }
 
     // Resolve input expressions
@@ -388,7 +398,7 @@ export class WorkflowExecutor {
       }
     }
 
-    return action(resolvedConfig, context);
+    return handler(resolvedConfig, context);
   }
 
   /**
@@ -490,7 +500,7 @@ export class WorkflowBuilder {
   step(config: Omit<StepConfig, 'id'>): this {
     this.workflow.steps!.push({
       ...config,
-      id: config.id || `step-${this.workflow.steps!.length + 1}`,
+      id: `step-${this.workflow.steps!.length + 1}`,
     });
     return this;
   }

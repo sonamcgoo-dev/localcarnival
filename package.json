@@ -10,7 +10,9 @@
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces",
     "lint": "eslint packages --ext .ts",
-    "clean": "rm -rf packages/*/dist"
+    "clean": "rm -rf packages/*/dist",
+    "desktop": "npm run dev --workspace=@localcircus/desktop",
+    "start": "npm run desktop"
   },
   "devDependencies": {
     "typescript": "^5.3.0",

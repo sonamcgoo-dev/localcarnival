@@ -1,0 +1,47 @@
+{
+  "name": "@localcircus/desktop",
+  "version": "0.1.0",
+  "description": "LocalCircus Desktop - Local-first creative operating environment",
+  "main": "dist/main.js",
+  "author": "LocalCircus Team",
+  "license": "CC0-1.0",
+  "scripts": {
+    "build": "tsc",
+    "start": "electron .",
+    "dev": "npm run build && electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.localcircus.desktop",
+    "productName": "LocalCircus",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "renderer/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"]
+    },
+    "win": {
+      "target": ["nsis"]
+    }
+  },
+  "dependencies": {
+    "@localcircus/core": "^0.1.0",
+    "@localcircus/ui": "^0.1.0",
+    "@localcircus/artifact-sdk": "^0.1.0",
+    "@localcircus/workflow-sdk": "^0.1.0"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "typescript": "^5.3.0",
+    "@types/node": "^20.10.0"
+  }
+}

@@ -185,7 +185,7 @@ export abstract class BaseProvider implements ProviderAdapter {
         latency,
       });
 
-      return response.json();
+      return response.json() as Promise<T>;
     } catch (error) {
       if (error instanceof ProviderException) {
         throw error;
