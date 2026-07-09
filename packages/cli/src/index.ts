@@ -13,6 +13,7 @@ import { createArtifactCommands } from './commands/artifacts';
 import { createWorkflowCommands } from './commands/workflows';
 import { createProviderCommands } from './commands/providers';
 import { createWebCommands } from './commands/web';
+import { createForgeCommands } from './commands/forge';
 
 // Version
 const VERSION = '0.1.0';
@@ -228,6 +229,7 @@ createArtifactCommands(program);
 createWorkflowCommands(program);
 createProviderCommands(program);
 createWebCommands(program);
+createForgeCommands(program);
 
 // Parse and execute
 program.parse(process.argv);
