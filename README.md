@@ -31,6 +31,12 @@
 - [x] useBigTop hook for state management
 - [x] CLI web command (`circus web start`)
 
+### Milestone 5: Local Zoo ✅
+- [x] ArtifactBrowser - browse, search, filter
+- [x] InstallManager - install, uninstall, update
+- [x] 10 categories (AI Agents, Models, Workflows, etc.)
+- [x] Artifact cards with icons and tags
+
 ## Mission
 
 Technology should disappear behind creation. LocalCircus gives creators an elevated sense of capacity, momentum, and the confidence to accomplish ambitious work.
@@ -125,6 +131,7 @@ See `localcircus-specs/` for full specifications.
 | [packages/workflow-sdk](./packages/workflow-sdk/) | Workflow execution |
 | [packages/bigtop](./packages/bigtop/) | Infinite canvas & workflow builder |
 | [packages/ui](./packages/ui/) | React components for Big Top |
+| [packages/zoo](./packages/zoo/) | Local artifact browser & manager |
 
 ## License
 
