@@ -16,6 +16,7 @@ import { createWebCommands } from './commands/web';
 import { createForgeCommands } from './commands/forge';
 import { createRegistryCommands } from './commands/registry';
 import { createCodexCommands } from './commands/codex';
+import { createInitCommand } from './commands/init';
 
 // Version
 const VERSION = '0.1.0';
@@ -227,6 +228,7 @@ function tryParseJSON(str: string): any | null {
 }
 
 // Add SDK commands
+createInitCommand(program);
 createArtifactCommands(program);
 createWorkflowCommands(program);
 createProviderCommands(program);

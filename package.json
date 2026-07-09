@@ -1,7 +1,7 @@
 {
   "name": "localcircus",
   "version": "0.1.0",
-  "description": "Local-first creative operating environment",
+  "description": "LocalCircus - A creative operating environment that amplifies human capability through intelligent tools, automation, and collaboration",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -9,11 +9,29 @@
   "scripts": {
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces",
-    "lint": "eslint packages --ext .ts"
+    "lint": "eslint packages --ext .ts",
+    "clean": "rm -rf packages/*/dist"
   },
   "devDependencies": {
     "typescript": "^5.3.0",
     "eslint": "^8.56.0",
     "@types/node": "^20.10.0"
-  }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sonamcgoo-dev/localcarnival"
+  },
+  "keywords": [
+    "localcircus",
+    "artifacts",
+    "workflow",
+    "automation",
+    "ai",
+    "creative"
+  ],
+  "author": "LocalCircus Team",
+  "license": "CC0-1.0"
 }
