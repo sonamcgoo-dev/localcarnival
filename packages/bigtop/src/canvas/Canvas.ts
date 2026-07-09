@@ -29,7 +29,7 @@ export class Canvas {
   private size: Size;
   
   // Configuration
-  private config: Required<CanvasConfig>;
+  private config: CanvasConfig;
   
   // Grid
   private grid: GridOptions;

@@ -160,7 +160,7 @@ function setupIPC() {
   ipcMain.handle('memory-set', async (_, key: string, value: any) => {
     try {
       const core = getCore();
-      core.memory.remember(key, value);
+      core.remember(key, value);
       return { success: true };
     } catch (error) {
       return { success: false, error: String(error) };
@@ -170,8 +170,8 @@ function setupIPC() {
   ipcMain.handle('memory-get', async (_, key: string) => {
     try {
       const core = getCore();
-      const entry = core.memory.recall(key);
-      return { success: true, data: entry?.value };
+      const value = core.recall(key);
+      return { success: true, data: value };
     } catch (error) {
       return { success: false, error: String(error) };
     }
@@ -180,7 +180,7 @@ function setupIPC() {
   ipcMain.handle('memory-search', async (_, query: string) => {
     try {
       const core = getCore();
-      const entries = core.memory.search(query);
+      const entries = core.getMemory().search(query);
       return { success: true, data: entries };
     } catch (error) {
       return { success: false, error: String(error) };

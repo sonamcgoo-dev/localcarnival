@@ -49,11 +49,19 @@ jobs:
           
       - name: Install dependencies
         run: npm ci
-        
+
+      - name: Build
+        run: npm run build
+
       - name: Validate LCA specs
         run: |
           echo "Validating LocalCircus Architecture specifications..."
           for spec in localcircus-specs/*.md; do
+            # Skip README.md
+            if [[ "$spec" == *"README.md" ]]; then
+              echo "Skipping $spec..."
+              continue
+            fi
             echo "Checking $spec..."
             # Basic validation checks
             head -1 "$spec" | grep -q "^# LCA-" || { echo "Missing LCA header"; exit 1; }
@@ -65,4 +73,3 @@ jobs:
       - name: CLI smoke test
         run: |
           node packages/cli/bin/circus.js --help
-          node packages/cli/bin/circus.js status

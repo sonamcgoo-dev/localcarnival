@@ -120,7 +120,7 @@ export function createArtifactCommands(program: any) {
       await manager.init();
 
       try {
-        const artifact = await manager.create(builder.artifact as any);
+        const artifact = await manager.create(builder.build() as any);
         console.log(chalk.green(`\n✓ Created artifact: ${artifact.name}`));
         console.log(`  UUID: ${chalk.cyan(artifact.uuid)}`);
         console.log(`  Version: ${artifact.version}`);

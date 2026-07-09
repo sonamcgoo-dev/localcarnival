@@ -91,7 +91,7 @@ async function onboard() {
   await core.start();
 
   // Store user preferences
-  const memory = core.memory;
+  const memory = core.getMemory();
   memory.remember('user.name', answers.name, { type: 'preference', importance: 'high' });
   memory.remember('user.useCase', answers.useCase, { type: 'preference', importance: 'medium' });
   memory.remember('user.provider', answers.provider, { type: 'preference', importance: 'high' });
@@ -188,7 +188,7 @@ async function runDemo() {
   console.log(chalk.blue('\n🎭 Running quick demo...\n'));
 
   const core = getCore();
-  const memory = core.memory;
+  const memory = core.getMemory();
 
   // Demo: Store and retrieve a memory
   memory.remember('demo.note', 'LocalCircus is awesome!', { type: 'fact', importance: 'medium' });
