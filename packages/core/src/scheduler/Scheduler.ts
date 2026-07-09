@@ -192,8 +192,8 @@ export class Scheduler {
     try {
       // Apply timeout if specified
       const result = task.timeout
-        ? this.withTimeout(task.handler(), task.timeout)
-        : task.handler();
+        ? this.withTimeout(Promise.resolve(task.handler()), task.timeout)
+        : Promise.resolve(task.handler());
 
       await result;
       

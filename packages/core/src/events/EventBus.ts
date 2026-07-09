@@ -61,21 +61,21 @@ export class EventBus {
   /**
    * Subscribe to events once
    */
-  once(event: string, handler: EventHandler): Unsubscribe {
+  once(eventName: string, handler: EventHandler): Unsubscribe {
     const wrappedHandler = async (payload: any) => {
-      const event: Event = {
-        type: event,
+      const evt: Event = {
+        type: eventName,
         payload,
         timestamp: Date.now(),
       };
       
-      await handler(event);
+      await handler(evt);
     };
 
-    this.emitter.once(event, wrappedHandler);
+    this.emitter.once(eventName, wrappedHandler);
 
     return () => {
-      this.emitter.off(event, wrappedHandler);
+      this.emitter.off(eventName, wrappedHandler);
     };
   }
 

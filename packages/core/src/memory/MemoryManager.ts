@@ -102,7 +102,7 @@ export class MemoryManager {
       }
     }
 
-    return entries.sort((a, b) => b.importanceRank() - a.importanceRank());
+    return entries.sort((a, b) => getImportanceRank(b.importance) - getImportanceRank(a.importance));
   }
 
   /**
@@ -172,7 +172,7 @@ export class MemoryManager {
    */
   getContext(maxEntries?: number): MemoryEntry[] {
     const entries = Array.from(this.working.values())
-      .sort((a, b) => b.importanceRank() - a.importanceRank());
+      .sort((a, b) => getImportanceRank(b.importance) - getImportanceRank(a.importance));
     
     return maxEntries ? entries.slice(0, maxEntries) : entries;
   }
@@ -245,7 +245,7 @@ export class MemoryManager {
 
     // Remove lowest importance entries
     const entries = Array.from(this.working.values())
-      .sort((a, b) => a.importanceRank() - b.importanceRank());
+      .sort((a, b) => getImportanceRank(a.importance) - getImportanceRank(b.importance));
 
     const toRemove = entries.slice(0, this.working.size - this.maxWorking);
     
@@ -275,11 +275,11 @@ export class MemoryManager {
   }
 }
 
-// Add importance ranking method
-(MemoryEntry.prototype as any).importanceRank = function(): number {
-  const ranks = { critical: 4, high: 3, medium: 2, low: 1 };
-  return ranks[this.importance];
-};
+// Importance ranking helper function
+export function getImportanceRank(importance: MemoryImportance): number {
+  const ranks: Record<MemoryImportance, number> = { critical: 4, high: 3, medium: 2, low: 1 };
+  return ranks[importance];
+}
 
 // Singleton
 let globalMemory: MemoryManager | null = null;

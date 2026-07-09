@@ -162,8 +162,8 @@ export class InstallManager {
    * Get installed artifact IDs
    */
   async getInstalled(): Promise<string[]> {
-    const data = await this.storage.read<string[]>(this.installedPath);
-    return data || [];
+    const data = await this.storage.read(this.installedPath);
+    return (data as string[]) || [];
   }
 
   /**
