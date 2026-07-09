@@ -15,6 +15,7 @@ import { createProviderCommands } from './commands/providers';
 import { createWebCommands } from './commands/web';
 import { createForgeCommands } from './commands/forge';
 import { createRegistryCommands } from './commands/registry';
+import { createCodexCommands } from './commands/codex';
 
 // Version
 const VERSION = '0.1.0';
@@ -232,6 +233,7 @@ createProviderCommands(program);
 createWebCommands(program);
 createForgeCommands(program);
 createRegistryCommands(program);
+createCodexCommands(program);
 
 // Parse and execute
 program.parse(process.argv);
