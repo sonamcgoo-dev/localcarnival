@@ -43,6 +43,13 @@
 - [x] Publisher - local registry publishing
 - [x] CLI commands (`circus forge create`)
 
+### Phase 4: Registry ✅
+- [x] GraphDatabase - artifact relationships
+- [x] SearchEngine - full-text search
+- [x] CompatibilityEngine - platform/version checking
+- [x] RecommendationsEngine - trending, similar
+- [x] CLI commands (`circus registry`)
+
 ## Mission
 
 Technology should disappear behind creation. LocalCircus gives creators an elevated sense of capacity, momentum, and the confidence to accomplish ambitious work.
@@ -137,6 +144,7 @@ circus zoo install codex-search-plugin
 | [packages/ui](./packages/ui/) | React components for Big Top |
 | [packages/zoo](./packages/zoo/) | Local artifact browser & manager |
 | [packages/codeforge](./packages/codeforge/) | Artifact creation & validation |
+| [packages/registry](./packages/registry/) | Artifact registry & search |
 
 ## License
 
