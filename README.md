@@ -50,6 +50,13 @@
 - [x] RecommendationsEngine - trending, similar
 - [x] CLI commands (`circus registry`)
 
+### Phase 8: Codex ✅
+- [x] DocumentManager - docs with Markdown
+- [x] KnowledgeManager - entries, notes, links
+- [x] Search - full-text across all content
+- [x] Built-in docs (Getting Started, Artifacts, Big Top)
+- [x] CLI commands (`circus codex`)
+
 ## Mission
 
 Technology should disappear behind creation. LocalCircus gives creators an elevated sense of capacity, momentum, and the confidence to accomplish ambitious work.
@@ -145,6 +152,7 @@ circus zoo install codex-search-plugin
 | [packages/zoo](./packages/zoo/) | Local artifact browser & manager |
 | [packages/codeforge](./packages/codeforge/) | Artifact creation & validation |
 | [packages/registry](./packages/registry/) | Artifact registry & search |
+| [packages/codex](./packages/codex/) | Documentation & knowledge |
 
 ## License
 
