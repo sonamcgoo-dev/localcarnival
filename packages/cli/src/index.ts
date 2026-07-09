@@ -9,6 +9,9 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
 import { createCore, getCore } from '@localcircus/core';
+import { createArtifactCommands } from './commands/artifacts';
+import { createWorkflowCommands } from './commands/workflows';
+import { createProviderCommands } from './commands/providers';
 
 // Version
 const VERSION = '0.1.0';
@@ -218,6 +221,11 @@ function tryParseJSON(str: string): any | null {
     return null;
   }
 }
+
+// Add SDK commands
+createArtifactCommands(program);
+createWorkflowCommands(program);
+createProviderCommands(program);
 
 // Parse and execute
 program.parse(process.argv);
