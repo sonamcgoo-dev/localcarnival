@@ -95,15 +95,13 @@ circus zoo install codex-search-plugin
 
 | ID | Title | Status |
 |----|-------|--------|
-| LCA-0002 | Artifact DNA | Active |
-| LCA-0003 | Artifact Card | Draft |
-| LCA-0004 | Registry Schema | Draft |
-| LCA-0005 | Capability Tags | Draft |
-| LCA-0006 | Compatibility Matrix | Draft |
-| LCA-0007 | Provider Interface | Draft |
-| LCA-0008 | Plugin Interface | Draft |
-
-See `localcircus-specs/` for full specifications.
+| [LCA-0002](./localcircus-specs/LCA-0002.md) | Artifact DNA | Active |
+| [LCA-0003](./localcircus-specs/LCA-0003.md) | Artifact Card | Draft |
+| [LCA-0004](./localcircus-specs/LCA-0004.md) | Registry Schema | Draft |
+| [LCA-0005](./localcircus-specs/LCA-0005.md) | Capability Tags | Draft |
+| LCA-0006 | Compatibility Matrix | Pending |
+| LCA-0007 | Provider Interface | Pending |
+| [LCA-0008](./localcircus-specs/LCA-0008.md) | Plugin Interface | Draft |
 
 ## Artifact Types
 
