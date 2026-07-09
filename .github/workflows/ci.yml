@@ -54,6 +54,11 @@ jobs:
         run: |
           echo "Validating LocalCircus Architecture specifications..."
           for spec in localcircus-specs/*.md; do
+            # Skip README.md
+            if [[ "$spec" == *"README.md" ]]; then
+              echo "Skipping $spec..."
+              continue
+            fi
             echo "Checking $spec..."
             # Basic validation checks
             head -1 "$spec" | grep -q "^# LCA-" || { echo "Missing LCA header"; exit 1; }
