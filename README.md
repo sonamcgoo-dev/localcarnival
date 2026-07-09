@@ -37,6 +37,12 @@
 - [x] 10 categories (AI Agents, Models, Workflows, etc.)
 - [x] Artifact cards with icons and tags
 
+### Phase 3: CodeForge ✅
+- [x] ArtifactWizard - interactive creation
+- [x] ValidationPipeline - 15 rules
+- [x] Publisher - local registry publishing
+- [x] CLI commands (`circus forge create`)
+
 ## Mission
 
 Technology should disappear behind creation. LocalCircus gives creators an elevated sense of capacity, momentum, and the confidence to accomplish ambitious work.
@@ -130,6 +136,7 @@ circus zoo install codex-search-plugin
 | [packages/bigtop](./packages/bigtop/) | Infinite canvas & workflow builder |
 | [packages/ui](./packages/ui/) | React components for Big Top |
 | [packages/zoo](./packages/zoo/) | Local artifact browser & manager |
+| [packages/codeforge](./packages/codeforge/) | Artifact creation & validation |
 
 ## License
 
