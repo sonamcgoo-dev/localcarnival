@@ -12,6 +12,7 @@ import { createCore, getCore } from '@localcircus/core';
 import { createArtifactCommands } from './commands/artifacts';
 import { createWorkflowCommands } from './commands/workflows';
 import { createProviderCommands } from './commands/providers';
+import { createWebCommands } from './commands/web';
 
 // Version
 const VERSION = '0.1.0';
@@ -226,6 +227,7 @@ function tryParseJSON(str: string): any | null {
 createArtifactCommands(program);
 createWorkflowCommands(program);
 createProviderCommands(program);
+createWebCommands(program);
 
 // Parse and execute
 program.parse(process.argv);
