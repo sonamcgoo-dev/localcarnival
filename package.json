@@ -7,7 +7,8 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "npm run -w @localcircus/core build && npm run -w @localcircus/storage build && npm run -w @localcircus/bigtop build && npm run -w @localcircus/provider-sdk build && npm run -w @localcircus/workflow-sdk build && npm run -w @localcircus/artifact-sdk build && npm run -w @localcircus/codex build && npm run -w @localcircus/ui build && npm run -w @localcircus/plugin-runtime build && npm run -w @localcircus/zoo build && npm run -w @localcircus/codeforge build && npm run -w @localcircus/registry build && npm run -w @localcircus/desktop build && npm run -w @localcircus/cli build",
+    "build:all": "npm run build --workspaces",
     "test": "npm run test --workspaces",
     "lint": "eslint packages --ext .ts",
     "clean": "rm -rf packages/*/dist",

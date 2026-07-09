@@ -96,7 +96,7 @@ export interface WizardState {
 }
 
 // Default templates for each artifact type
-export const DEFAULT_TEMPLATES: Record<ArtifactType, ArtifactTemplate> = {
+export const DEFAULT_TEMPLATES: Partial<Record<ArtifactType, ArtifactTemplate>> = {
   'agent': {
     type: 'agent',
     name: 'agent-template',

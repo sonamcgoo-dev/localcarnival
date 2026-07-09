@@ -80,6 +80,16 @@ export class EventBus {
   }
 
   /**
+   * Unsubscribe from events
+   */
+  off(event: string | string[], handler: EventHandler): void {
+    const events = Array.isArray(event) ? event : [event];
+    for (const e of events) {
+      this.emitter.off(e, handler);
+    }
+  }
+
+  /**
    * Publish an event
    */
   emit(event: string, payload?: any, source?: string): void {

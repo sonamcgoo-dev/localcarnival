@@ -6,7 +6,7 @@
 
 import { ArtifactDNA } from '@localcircus/artifact-sdk';
 import { EventBus } from '@localcircus/core';
-import { LocalStorage } from '@localcircus/storage';
+import { LocalStorage, createStorage } from '@localcircus/storage';
 import { ValidationPipeline } from '../validation/ValidationPipeline';
 import { PublishConfig, PublishResult, SigningConfig } from '../types';
 
@@ -23,7 +23,7 @@ export class Publisher {
   ) {
     this.eventBus = new EventBus();
     this.registry = registry;
-    this.storage = storage || new LocalStorage();
+    this.storage = storage || createStorage();
     this.validation = validation || new ValidationPipeline();
   }
 
@@ -121,7 +121,7 @@ export class Publisher {
    */
   async update(dna: ArtifactDNA): Promise<PublishResult> {
     // Check if exists
-    const existing = await this.storage.read<ArtifactDNA>(`registry:${dna.uuid}`);
+    const existing = await this.storage.read(`registry:${dna.uuid}`);
     
     if (!existing) {
       return {
@@ -142,7 +142,7 @@ export class Publisher {
     message: string
   ): Promise<boolean> {
     try {
-      const index = await this.storage.read<any>(`registry:index:${name}`);
+      const index = await this.storage.read(`registry:index:${name}`);
       
       if (index) {
         index.deprecated = true;
@@ -162,17 +162,17 @@ export class Publisher {
    * Get published artifact
    */
   async getPublished(uuid: string): Promise<ArtifactDNA | null> {
-    return this.storage.read<ArtifactDNA>(`registry:${uuid}`);
+    return this.storage.read(`registry:${uuid}`);
   }
 
   /**
    * Get published artifact by name
    */
   async getByName(name: string): Promise<ArtifactDNA | null> {
-    const index = await this.storage.read<{ uuid: string }>(`registry:index:${name}`);
+    const index = await this.storage.read(`registry:index:${name}`);
     
     if (index?.uuid) {
-      return this.storage.read<ArtifactDNA>(`registry:${index.uuid}`);
+      return this.storage.read(`registry:${index.uuid}`);
     }
     
     return null;
@@ -195,7 +195,7 @@ export class Publisher {
     
     for (const key of keys) {
       if (key.startsWith('registry:') && !key.includes(':index:')) {
-        const artifact = await this.storage.read<ArtifactDNA>(key);
+        const artifact = await this.storage.read(key);
         if (artifact) {
           if (!options.type || artifact.type === options.type) {
             artifacts.push(artifact);
