@@ -13,10 +13,16 @@
 - [x] Local file-based artifact storage
 - [x] Plugin loading and lifecycle management
 
-### Next: Milestone 2 - SDKs 🔜
-- Artifact SDK
-- Provider SDK
-- Workflow SDK
+### Milestone 2: SDKs ✅
+- [x] Artifact SDK - CRUD, builder, validation, search
+- [x] Provider SDK - OpenAI, Ollama, ProviderManager
+- [x] Workflow SDK - Executor, builder, built-in actions
+- [x] CLI integration for all SDKs
+
+### Next: Milestone 3 - Big Top 🔜
+- Canvas rendering
+- Basic nodes
+- Simple workflows
 
 ## Mission
 
@@ -107,6 +113,9 @@ See `localcircus-specs/` for full specifications.
 | [packages/cli](./packages/cli/) | Command-line interface |
 | [packages/storage](./packages/storage/) | Local artifact storage |
 | [packages/plugin-runtime](./packages/plugin-runtime/) | Plugin system |
+| [packages/artifact-sdk](./packages/artifact-sdk/) | Artifact management |
+| [packages/provider-sdk](./packages/provider-sdk/) | AI provider adapters |
+| [packages/workflow-sdk](./packages/workflow-sdk/) | Workflow execution |
 
 ## License
 
