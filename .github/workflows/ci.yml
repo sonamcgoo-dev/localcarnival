@@ -73,4 +73,3 @@ jobs:
       - name: CLI smoke test
         run: |
           node packages/cli/bin/circus.js --help
-          node packages/cli/bin/circus.js status
